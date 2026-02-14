@@ -11,11 +11,35 @@ import ThemeToggle from "./components/ThemeToggle";
 import BackToTop from "./components/BackToTop";
 import Confetti from "./components/Confetti";
 
+
+import { useRef, useEffect } from "react";
+
 function App() {
+  // Ref to access MusicPlayer's audio element
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Handler to play music on first user tap
+    const playMusicOnTap = () => {
+      if (audioRef.current) {
+        audioRef.current.play().catch(() => {});
+        document.removeEventListener("touchstart", playMusicOnTap);
+        document.removeEventListener("click", playMusicOnTap);
+      }
+    };
+    document.addEventListener("touchstart", playMusicOnTap);
+    document.addEventListener("click", playMusicOnTap);
+    return () => {
+      document.removeEventListener("touchstart", playMusicOnTap);
+      document.removeEventListener("click", playMusicOnTap);
+    };
+  }, []);
+
   return (
     <>
       <HeartsBackground />
-      <MusicPlayer />
+      {/* Pass ref to MusicPlayer for global control */}
+      <MusicPlayer audioRef={audioRef} />
       <ThemeToggle />
       <Hero />
       <Timeline />

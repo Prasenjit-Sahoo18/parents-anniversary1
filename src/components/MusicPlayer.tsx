@@ -1,43 +1,17 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 
-const MusicPlayer = () => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+interface MusicPlayerProps {
+  audioRef: React.RefObject<HTMLAudioElement>;
+}
 
+const MusicPlayer = ({ audioRef }: MusicPlayerProps) => {
   useEffect(() => {
     const el = audioRef.current;
     if (!el) return;
-    
     el.loop = true;
     el.volume = 0.5;
-    
-    const tryPlay = async () => {
-      try {
-        el.play().catch(err => {
-          console.log("Autoplay blocked, waiting for user interaction:", err);
-        });
-      } catch (err) {
-        console.error("Play error:", err);
-      }
-    };
-
-    // Try to play immediately
-    setTimeout(tryPlay, 500);
-
-    // Also add listeners for user interaction as fallback
-    const handleUserInteraction = () => {
-      el.play().catch(err => console.error("Play error on interaction:", err));
-      document.removeEventListener("click", handleUserInteraction);
-      document.removeEventListener("touchstart", handleUserInteraction);
-    };
-
-    document.addEventListener("click", handleUserInteraction);
-    document.addEventListener("touchstart", handleUserInteraction);
-
-    return () => {
-      document.removeEventListener("click", handleUserInteraction);
-      document.removeEventListener("touchstart", handleUserInteraction);
-    };
-  }, []);
+    // Don't auto-play here; let App.tsx handle user interaction
+  }, [audioRef]);
 
   return (
     <audio

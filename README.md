@@ -1,4 +1,3 @@
-
 # Parents' Anniversary Website
 
 A modern, elegant web application celebrating a special milestone with interactive features, smooth animations, and an immersive user experience. Built with React, TypeScript, and Vite for optimal performance.
@@ -31,13 +30,6 @@ A modern, elegant web application celebrating a special milestone with interacti
 - Node.js (v14 or higher)
 - npm or yarn package manager
 - Git for version control
-
-## ⚡ Quick Access
-
-Once running, access the website at:
-```
-🌐 http://localhost:5173/
-```
 
 ## 🚀 Quick Start
 
@@ -185,8 +177,3 @@ Built with care for celebrating love and togetherness.
 ---
 
 **Made with ❤️ by Prasenjit Sahoo**
-
-
-
-
-

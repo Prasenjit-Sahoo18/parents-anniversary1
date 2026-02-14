@@ -31,6 +31,13 @@ A modern, elegant web application celebrating a special milestone with interacti
 - npm or yarn package manager
 - Git for version control
 
+## ⚡ Quick Access
+
+Once running, access the website at:
+```
+🌐 http://localhost:5173/
+```
+
 ## 🚀 Quick Start
 
 ### 1. Clone the Repository
